@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>                                                <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Cart - Escáner de Carrito Inteligente</title>
+    <link rel="stylesheet" href="style.css">          <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <i class="fas fa-shopping-cart logo-icon"></i>
+                <h1>Smart Cart</h1>
+            </div>
+            <p class="app-description">Escanea los productos en tu carrito y obtén un listado con precios</p>
+        </header>
+
+        <main class="main-content">
+            <div class="scanner-section">
+                <div class="camera-container">
+                    <video id="cameraFeed" autoplay playsinline></video>
+                    <canvas id="detectionCanvas"></canvas>
+                    <div class="camera-overlay">
+                        <div class="scanning-animation"></div>
+                        <p class="scanning-text">Enfoca los productos en tu carrito</p>
+                    </div>
+                </div>
+                <div class="scanner-controls">
+                    <button id="scanBtn" class="btn primary-btn">
+                        <i class="fas fa-camera"></i> Escanear Productos
+                    </button>
+                    <button id="toggleCameraBtn" class="btn secondary-btn">
+                        <i class="fas fa-sync-alt"></i> Cambiar Cámara
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h2 class="section-title">
+                    <i class="fas fa-list"></i> Tu Lista de Productos
+                    <span id="totalPrice" class="total-price">$0.00</span>
+                </h2>
+
+                <div class="product-list-container">
+                    <div class="product-list-header">
+                        <span>Producto</span>
+                        <span>Precio</span>
+                    </div>
+                    <ul id="productList" class="product-list">
+                        <li class="empty-state">
+                            <i class="fas fa-camera"></i>
+                            <p>Escanea productos para verlos aquí</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <button id="checkoutBtn" class="btn checkout-btn" disabled>
+                    <i class="fas fa-credit-card"></i> Pagar Ahora
+                </button>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>© 2023 Smart Cart - Tecnología de compras inteligente</p>
+        </footer>
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>¿Deseas agregar estos productos?</h3>
+            <div id="modalProductList" class="modal-product-list"></div>
+            <div class="modal-actions">
+                <button id="confirmAddBtn" class="btn primary-btn">Confirmar</button>
+                <button id="cancelAddBtn" class="btn secondary-btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="app.js"></script>
+</body>
+</html>

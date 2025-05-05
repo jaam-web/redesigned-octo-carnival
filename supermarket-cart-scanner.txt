@@ -1,0 +1,8 @@
+/supermarket-cart-scanner
+│
+├── index.html          # Página principal
+├── style.css           # Estilos principales
+├── app.js              # Lógica de la aplicación
+├── model/              # Directorio para el modelo YOLO
+│   └── yolo-weights.js # Pesos del modelo (puede variar según implementación)
+└── assets/
